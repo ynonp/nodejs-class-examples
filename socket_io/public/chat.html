@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Public Wall Chatter</title>
+</head>
+<body>
+    <form>
+        <input type="text" id="inp-text" />
+        <button id="btn-send">Send</button>
+    </form>
+    <ul>
+    </ul>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://localhost');
+    var ul     = document.querySelector('ul');
+
+    socket.on('text', function (data) {
+        var new_msg         = document.createElement('li');
+        new_msg.innerHTML   = data.text;
+        new_msg.style.color = data.color;
+        ul.appendChild(new_msg);
+    });
+
+    var btn_send = document.querySelector('#btn-send');
+    btn_send.addEventListener('click', function(e) {
+        e.preventDefault();
+        var text = document.querySelector('#inp-text').value;
+        socket.emit('text', { text: text });
+        console.log('sent! ');
+    });
+</script>
+
+</body>
+</html>
