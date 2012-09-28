@@ -9,7 +9,6 @@ var express = require('express')
 
 var    app = module.exports = express.createServer();
         io = require('socket.io').listen(app);
-        ps = require('socket.io').listen(8080);
 
 
 // Configuration
@@ -42,5 +41,5 @@ app.listen(3000, function(){
 var wall  = require('./lib/wall.js');
 var paint = require('./lib/paint.js');
 
-io.sockets.on('connection', wall.connect);
-ps.sockets.on('connection', paint.connect);
+io.of('/wall').on('connection', wall.connect);
+io.of('/paint').on('connection', paint.connect);

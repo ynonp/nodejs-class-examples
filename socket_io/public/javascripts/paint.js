@@ -7,7 +7,7 @@
  */
 
 
-(function(global) {
+(function() {
     var can = document.querySelector('canvas');
     var ctx = can.getContext('2d');
 
@@ -16,7 +16,7 @@
     var offset_x = can.offsetLeft;
     var offset_y = can.offsetTop;
 
-    var socket = io.connect('http://localhost:8080');
+    var socket = io.connect('http://localhost/paint');
 
     var getRelativeCoords = function(ev) {
         ev.preventDefault();
@@ -68,4 +68,4 @@
         ctx.fillStyle   = 'blue';
         drawLine(pos);
     });
-}(this));
+}());
