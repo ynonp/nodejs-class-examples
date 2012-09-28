@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mousers Example</title>
+
+    <style>
+        .mouser { position: absolute; }
+
+        .mouser:after {
+            position: absolute;
+            width:20px;
+            height:20px;
+            content: '*';
+        }
+        body { min-height: 600px; }
+    </style>
+</head>
+<body>
+
+    <script type="text/template" id="tmpl-mousers">
+        {{#each mousers}}
+            <div id="{{id}}" style="left:{{x}}px;top:{{y}}px;" class="mouser"></div>
+        {{/each}}
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0.beta6/handlebars.min.js"></script>
+    <script src="javascripts/mousers.js"></script>
+</body>
+</html>

@@ -38,8 +38,10 @@ app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
 
-var wall  = require('./lib/wall.js');
-var paint = require('./lib/paint.js');
+var wall    = require('./lib/wall.js');
+var paint   = require('./lib/paint.js');
+var mousers = require('./lib/mousers.js');
 
 io.of('/wall').on('connection', wall.connect);
 io.of('/paint').on('connection', paint.connect);
+io.of('/mousers').on('connection', mousers.connect);
