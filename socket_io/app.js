@@ -45,3 +45,31 @@ var mousers = require('./lib/mousers.js');
 io.of('/wall').on('connection', wall.connect);
 io.of('/paint').on('connection', paint.connect);
 io.of('/mousers').on('connection', mousers.connect);
+
+io.of('/echo').on('connection', function(s) {
+    s.on('message', function(msg) {
+        console.log(msg);
+        s.send(msg);
+        s.broadcast.send(msg);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

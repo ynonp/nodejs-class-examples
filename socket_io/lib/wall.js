@@ -7,7 +7,9 @@
  */
 
 var connected_clients = {};
-var colors = ['red', 'blue', 'green', 'orange', 'yellow', 'magenta', 'cyan'];
+var colors = ['red', 'blue', 'green', 'orange',
+            'yellow', 'magenta', 'cyan'];
+
 var last_color_index = 0;
 
 function getNextColor() {
@@ -18,10 +20,14 @@ function getNextColor() {
 
 exports.connect = function(socket) {
     console.log(socket.id);
-    connected_clients[socket.id] = { socket: socket, clr: getNextColor() };
+    connected_clients[socket.id] = {
+        socket: socket,
+        clr: getNextColor()
+    };
 
     socket.on('text', function(data) {
         var sender = connected_clients[socket.id];
+
         Object.keys(connected_clients).forEach(function(socket_id) {
             var info = connected_clients[socket_id];
             console.log('sending to: ' + sender.clr);
